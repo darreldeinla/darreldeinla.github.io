@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Darrel Deinla — Digital Card</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  min-height: 100vh;
+  font-family: 'DM Sans', sans-serif;
+  background: #0E141C;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+/* Ambient background */
+body::before {
+  content: '';
+  position: fixed; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 20%, rgba(255,122,89,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 80% 80%, rgba(37,99,235,0.08) 0%, transparent 60%);
+}
+
+/* ── CARD ── */
+.card {
+  width: 100%;
+  max-width: 420px;
+  background: #141C27;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.07);
+  box-shadow:
+    0 0 0 1px rgba(255,122,89,0.06),
+    0 32px 80px rgba(0,0,0,0.5),
+    0 8px 24px rgba(0,0,0,0.3);
+  position: relative;
+  animation: cardIn 0.8s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(32px) scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Top gradient bar */
+.card-topbar {
+  height: 4px;
+  background: linear-gradient(90deg, #FF7A59 0%, #FF9F59 40%, #2563EB 100%);
+}
+
+/* ── HEADER ── */
+.card-header {
+  padding: 2rem 2rem 1.5rem;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 1.25rem;
+}
+.card-header::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse 80% 100% at 80% 0%, rgba(255,122,89,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.photo-wrap {
+  position: relative; flex-shrink: 0;
+  width: 80px; height: 80px;
+}
+.photo-wrap::before {
+  content: '';
+  position: absolute; inset: -2px;
+  background: linear-gradient(135deg, #FF7A59, #2563EB);
+  border-radius: 50%; z-index: 0;
+}
+.photo-wrap img {
+  position: relative; z-index: 1;
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  object-fit: cover; object-position: center top;
+  border: 2px solid #141C27;
+  display: block;
+}
+.online-dot {
+  position: absolute; bottom: 3px; right: 3px; z-index: 2;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: #22C55E;
+  border: 2px solid #141C27;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
+  50% { box-shadow: 0 0 0 5px rgba(34,197,94,0); }
+}
+
+.header-text {}
+.name {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.5rem; font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 0.3rem;
+}
+.name span { color: #FF7A59; }
+.role {
+  font-size: 0.78rem; font-weight: 500;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+
+/* ── BADGES ── */
+.badges {
+  display: flex; flex-wrap: wrap; gap: 0.4rem;
+  padding: 0 2rem 1.5rem;
+}
+.badge {
+  font-size: 0.68rem; font-weight: 600;
+  padding: 0.25rem 0.65rem; border-radius: 20px;
+  letter-spacing: 0.04em;
+}
+.badge-hs { background: rgba(255,122,89,0.12); color: #FF9F7A; border: 1px solid rgba(255,122,89,0.25); }
+.badge-ghl { background: rgba(37,99,235,0.12); color: #93C5FD; border: 1px solid rgba(37,99,235,0.25); }
+.badge-neu { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.1); }
+
+/* ── DIVIDER ── */
+.divider { height: 1px; background: rgba(255,255,255,0.06); margin: 0 2rem; }
+
+/* ── STATS ── */
+.stats {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  padding: 1.25rem 2rem; gap: 0;
+}
+.stat { text-align: center; }
+.stat + .stat { border-left: 1px solid rgba(255,255,255,0.06); }
+.stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.4rem; font-weight: 700; line-height: 1;
+  display: block; margin-bottom: 0.3rem;
+}
+.stat-num.o { color: #FF7A59; }
+.stat-num.b { color: #93C5FD; }
+.stat-num.w { color: #FFFFFF; }
+.stat-label {
+  font-size: 0.63rem; font-weight: 500;
+  color: rgba(255,255,255,0.35);
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+
+/* ── CONTACT LINKS ── */
+.contacts {
+  padding: 0 1.5rem 1.5rem;
+  display: flex; flex-direction: column; gap: 0.5rem;
+}
+.contact-row {
+  display: flex; align-items: center; gap: 0.9rem;
+  padding: 0.75rem 1rem; border-radius: 10px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  text-decoration: none; color: inherit;
+  transition: all 0.2s; cursor: pointer;
+  position: relative; overflow: hidden;
+}
+.contact-row::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: var(--accent, #FF7A59); border-radius: 0 2px 2px 0;
+  transform: scaleY(0); transition: transform 0.2s;
+}
+.contact-row:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.1); }
+.contact-row:hover::before { transform: scaleY(1); }
+.contact-icon {
+  width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+}
+.ci-hs { background: rgba(255,122,89,0.12); }
+.ci-ghl { background: rgba(37,99,235,0.12); }
+.ci-grn { background: rgba(34,197,94,0.12); }
+.ci-neu { background: rgba(255,255,255,0.06); }
+.contact-info { flex: 1; }
+.contact-label {
+  font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(255,255,255,0.35);
+  display: block; margin-bottom: 0.1rem;
+}
+.contact-value {
+  font-size: 0.85rem; font-weight: 400; color: rgba(255,255,255,0.8);
+}
+.contact-arrow {
+  font-size: 0.8rem; color: rgba(255,255,255,0.2);
+  transition: color 0.2s, transform 0.2s;
+}
+.contact-row:hover .contact-arrow { color: rgba(255,255,255,0.5); transform: translateX(3px); }
+
+/* ── CTA BUTTONS ── */
+.cta-row {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0.75rem; padding: 0 1.5rem 1.5rem;
+}
+.cta-btn {
+  padding: 0.8rem 1rem; border-radius: 10px;
+  font-family: 'Syne', sans-serif; font-size: 0.82rem; font-weight: 700;
+  text-decoration: none; text-align: center;
+  letter-spacing: 0.02em; transition: all 0.2s; cursor: pointer; border: none;
+  display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+}
+.cta-hs {
+  background: linear-gradient(135deg, #FF7A59, #E8603E);
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(255,122,89,0.3);
+}
+.cta-hs:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,122,89,0.4); }
+.cta-ghl {
+  background: linear-gradient(135deg, #2563EB, #1D4ED8);
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(37,99,235,0.3);
+}
+.cta-ghl:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,99,235,0.4); }
+
+/* ── SAVE CARD ── */
+.save-row {
+  padding: 0 1.5rem 1.5rem;
+}
+.save-btn {
+  width: 100%; padding: 0.85rem;
+  border-radius: 10px; border: 1.5px solid rgba(255,255,255,0.1);
+  background: transparent; color: rgba(255,255,255,0.6);
+  font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500;
+  cursor: pointer; transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+}
+.save-btn:hover { border-color: rgba(255,255,255,0.25); color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.04); }
+
+/* ── FOOTER ── */
+.card-footer {
+  padding: 1rem 2rem;
+  background: rgba(0,0,0,0.2);
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.footer-brand {
+  font-family: 'Syne', sans-serif; font-size: 0.8rem; font-weight: 700;
+  color: rgba(255,255,255,0.3);
+}
+.footer-brand span { color: #FF7A59; }
+.footer-location { font-size: 0.72rem; color: rgba(255,255,255,0.25); }
+
+/* ── TOAST ── */
+.toast {
+  position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(80px);
+  background: #1E293B; color: #fff; font-size: 0.85rem; font-weight: 500;
+  padding: 0.75rem 1.5rem; border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), opacity 0.35s;
+  opacity: 0; z-index: 999; white-space: nowrap;
+}
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="card-topbar"></div>
+
+  <!-- Header -->
+  <div class="card-header">
+    <div class="photo-wrap">
+      <img src="https://i.ibb.co/232RF7g5/9adc283d-8fe4-4a77-a7ee-38935ad926b7.png" alt="Darrel Deinla">
+      <div class="online-dot"></div>
+    </div>
+    <div class="header-text">
+      <div class="name">Darrel <span>Deinla</span></div>
+      <div class="role">CRM &amp; RevOps Specialist</div>
+    </div>
+  </div>
+
+  <!-- Badges -->
+  <div class="badges">
+    <span class="badge badge-hs">6× HubSpot Certified</span>
+    <span class="badge badge-ghl">GHL Specialist</span>
+    <span class="badge badge-neu">n8n · Zapier · Make</span>
+    <span class="badge badge-neu">AI Workflows</span>
+    <span class="badge badge-hs">Lead Gen Expert</span>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat">
+      <span class="stat-num o">5+</span>
+      <span class="stat-label">Years</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num b">500+</span>
+      <span class="stat-label">Workflows Built</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num w">14+</span>
+      <span class="stat-label">Clients</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Contacts -->
+  <div class="contacts" style="margin-top:1rem">
+
+    <a href="mailto:darrel.deinla@gmail.com" class="contact-row" style="--accent:#FF7A59">
+      <div class="contact-icon ci-hs">✉️</div>
+      <div class="contact-info">
+        <span class="contact-label">Email</span>
+        <span class="contact-value">darrel.deinla@gmail.com</span>
+      </div>
+      <span class="contact-arrow">›</span>
+    </a>
+
+    <a href="https://wa.me/639169167186" target="_blank" class="contact-row" style="--accent:#22C55E">
+      <div class="contact-icon ci-grn">📱</div>
+      <div class="contact-info">
+        <span class="contact-label">WhatsApp</span>
+        <span class="contact-value">+63 916 916 7186</span>
+      </div>
+      <span class="contact-arrow">›</span>
+    </a>
+
+    <a href="https://darreldeinla.github.io" target="_blank" class="contact-row" style="--accent:#FF7A59">
+      <div class="contact-icon ci-hs">🌐</div>
+      <div class="contact-info">
+        <span class="contact-label">Portfolio Website</span>
+        <span class="contact-value">darreldeinla.github.io</span>
+      </div>
+      <span class="contact-arrow">›</span>
+    </a>
+
+    <div class="contact-row" style="--accent:#2563EB" onclick="copyPhone()">
+      <div class="contact-icon ci-ghl">📞</div>
+      <div class="contact-info">
+        <span class="contact-label">Phone · Tap to Copy</span>
+        <span class="contact-value">+63 916 916 7186</span>
+      </div>
+      <span class="contact-arrow">⎘</span>
+    </div>
+
+    <div class="contact-row" style="--accent:#FF7A59" onclick="copyEmail()">
+      <div class="contact-icon ci-neu">📋</div>
+      <div class="contact-info">
+        <span class="contact-label">Email · Tap to Copy</span>
+        <span class="contact-value">darrel.deinla@gmail.com</span>
+      </div>
+      <span class="contact-arrow">⎘</span>
+    </div>
+
+  </div>
+
+  <!-- CTA Buttons -->
+  <div class="cta-row">
+    <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3GumiMaH9RAv9qhPRnWckXtvEjBA1xKKPV5SKzUCKxdUbpZ6hIfTyS6199WorUYqe2yokG8P8G" target="_blank" class="cta-btn cta-hs">
+      📅 Book a Call
+    </a>
+    <a href="https://darreldeinla.github.io#contact" target="_blank" class="cta-btn cta-ghl">
+      💬 Send Message
+    </a>
+  </div>
+
+  <!-- Save Card -->
+  <div class="save-row">
+    <button class="save-btn" onclick="saveCard()">
+      ⬇ Save Contact to Phone
+    </button>
+  </div>
+
+  <!-- Footer -->
+  <div class="card-footer">
+    <div class="footer-brand"><span>DNL</span> · Darrel Deinla</div>
+    <div class="footer-location">📍 Metro Manila, PH</div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function copyPhone() {
+  navigator.clipboard.writeText('+639169167186').then(() => showToast('📞 Phone number copied!'));
+}
+
+function copyEmail() {
+  navigator.clipboard.writeText('darrel.deinla@gmail.com').then(() => showToast('✉️ Email copied!'));
+}
+
+function saveCard() {
+  const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:Darrel Deinla
+ORG:Independent CRM & RevOps Consultant
+TITLE:CRM & RevOps Specialist
+TEL;TYPE=CELL:+639169167186
+EMAIL:darrel.deinla@gmail.com
+URL:https://darreldeinla.github.io
+ADR;TYPE=HOME:;;Metro Manila;;Philippines;;
+NOTE:HubSpot Certified · GoHighLevel Specialist · n8n · Zapier · Make · AI Workflows · Lead Generation
+END:VCARD`;
+
+  const blob = new Blob([vcard], { type: 'text/vcard' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'Darrel_Deinla.vcf';
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('✅ Contact saved!');
+}
+</script>
+</body>
+</html>
