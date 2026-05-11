@@ -353,7 +353,6 @@ footer{
     <li><a href="#tools">Tools</a></li>
     <li><a href="#certs">Certifications</a></li>
     <li><a href="#clients">Clients</a></li>
-    <li><a href="#booking">Book a Call</a></li>
 <li><a href="#contact" class="nav-cta">Let's Talk</a></li>
   </ul>
 </nav>
@@ -577,27 +576,6 @@ footer{
   </table>
 </section>
 
-<!-- BOOKING -->
-<section id="booking" style="padding:6rem 5vw;background:var(--off)">
-<div style="display:flex;justify-content:center">
-  <div style="
-    border-radius:12px;
-    overflow:hidden;
-    border:1px solid var(--border);
-    box-shadow:0 4px 24px rgba(0,0,0,0.06);
-    width:700px;
-    max-width:100%;
-  ">
-    <iframe 
-      src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3GumiMaH9RAv9qhPRnWckXtvEjBA1xKKPV5SKzUCKxdUbpZ6hIfTyS6199WorUYqe2yokG8P8G?gv=1" 
-      style="border:0;display:block" 
-      width="100%" 
-      height="550" 
-      frameborder="0">
-    </iframe>
-  </div>
-</div>
-</section>
   
 <!-- CONTACT -->
 <section id="contact" style="padding:0">
@@ -673,11 +651,38 @@ async function handleSubmit(btn){
     body:JSON.stringify({name,email,service,message})
   });
   if(response.ok){
-    btn.textContent='Message Sent ✓';btn.style.background='#059669';
-    document.querySelector('input[type="text"]').value='';
-    document.querySelector('input[type="email"]').value='';
-    document.querySelector('select').value='';
-    document.querySelector('textarea').value='';
+    // Hide the form
+    document.querySelector('.contact-right').innerHTML = `
+      <div style="text-align:center;padding:1.5rem 0 1rem">
+        <div style="
+          width:56px;height:56px;border-radius:50%;
+          background:#ECFDF5;border:2px solid #059669;
+          display:flex;align-items:center;justify-content:center;
+          font-size:1.5rem;margin:0 auto 1rem;
+        ">✓</div>
+        <h3 style="
+          font-family:var(--head);font-size:1.3rem;
+          font-weight:700;color:var(--dark);margin-bottom:0.4rem;
+        ">Message Sent!</h3>
+        <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1.5rem">
+          Thanks ${name}! Now pick a time for your free discovery call below.
+        </p>
+      </div>
+
+      <div style="
+        border-radius:12px;overflow:hidden;
+        border:1px solid var(--border);
+        box-shadow:0 4px 20px rgba(0,0,0,0.06);
+      ">
+        <iframe 
+          src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3GumiMaH9RAv9qhPRnWckXtvEjBA1xKKPV5SKzUCKxdUbpZ6hIfTyS6199WorUYqe2yokG8P8G?gv=1"
+          style="border:0;display:block"
+          width="100%"
+          height="520"
+          frameborder="0">
+        </iframe>
+      </div>
+    `;
   }else{
     btn.textContent='Failed — Try Again';btn.style.background='#DC2626';btn.disabled=false;
   }
