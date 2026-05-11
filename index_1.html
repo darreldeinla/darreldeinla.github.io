@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Darrel Deinla — CRM & RevOps Specialist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D1F3C;
+    --navy-2: #162A4A;
+    --navy-3: #1E3560;
+    --gold: #C8922A;
+    --gold-light: #E4AD4A;
+    --gold-dim: #8A6420;
+    --white: #FFFFFF;
+    --off: #F6F7F9;
+    --mid: #E8ECF2;
+    --body: #2D3748;
+    --muted: #6B7A92;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --mono: 'DM Mono', monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: var(--sans);
+    font-weight: 400;
+    color: var(--body);
+    background: var(--white);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+  /* ── Typography ── */
+  h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.2; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(13, 31, 60, 0.96);
+    backdrop-filter: blur(12px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw; height: 64px;
+    border-bottom: 1px solid rgba(200, 146, 42, 0.2);
+    transition: all 0.3s ease;
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    color: var(--white);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--navy) !important;
+    padding: 0.4rem 1.2rem;
+    border-radius: 2px;
+    font-weight: 500 !important;
+    letter-spacing: 0.04em !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 0 5vw;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; pointer-events: none;
+    background: 
+      radial-gradient(ellipse 60% 60% at 100% 50%, rgba(200,146,42,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 0% 80%, rgba(200,146,42,0.04) 0%, transparent 60%);
+  }
+  .hero-grid-bg {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image: 
+      linear-gradient(rgba(200,146,42,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,146,42,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-left { position: relative; z-index: 2; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.5rem;
+    font-weight: 400;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block; width: 32px; height: 1px; background: var(--gold);
+  }
+  h1.hero-name {
+    font-size: clamp(3rem, 5vw, 5rem);
+    color: var(--white);
+    line-height: 1.0;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+  }
+  h1.hero-name em {
+    color: var(--gold-light);
+    font-style: italic;
+    display: block;
+  }
+  .hero-title {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 300;
+    margin-bottom: 2rem;
+  }
+  .hero-desc {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.7);
+    max-width: 480px;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+  .hero-tags {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .hero-tag {
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    border: 1px solid rgba(200,146,42,0.35);
+    padding: 0.3rem 0.75rem;
+    border-radius: 2px;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 0.85rem 2rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-ghost {
+    border: 1px solid rgba(200,146,42,0.5);
+    color: rgba(255,255,255,0.8);
+    padding: 0.85rem 2rem;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--white); }
+
+  /* Hero right — photo */
+  .hero-right {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .hero-photo-frame {
+    width: 320px; height: 400px;
+    position: relative;
+  }
+  .hero-photo-frame::before {
+    content: '';
+    position: absolute; top: 16px; left: 16px; right: -16px; bottom: -16px;
+    border: 1px solid rgba(200,146,42,0.3);
+    border-radius: 2px;
+    z-index: 0;
+  }
+  .hero-photo-inner {
+    position: relative; z-index: 1;
+    width: 100%; height: 100%;
+    background: var(--navy-2);
+    border: 1px solid rgba(200,146,42,0.4);
+    border-radius: 2px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 0.75rem;
+    overflow: hidden;
+  }
+  .hero-photo-inner img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  .hero-photo-placeholder {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 0.75rem; padding: 2rem;
+    text-align: center;
+  }
+  .photo-icon {
+    width: 64px; height: 64px;
+    border: 2px solid rgba(200,146,42,0.4);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.75rem;
+    color: var(--gold);
+  }
+  .photo-label {
+    font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(200,146,42,0.6);
+  }
+  .photo-sub { font-size: 0.72rem; color: rgba(255,255,255,0.25); }
+
+  .hero-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: rgba(200,146,42,0.15);
+    border: 1px solid rgba(200,146,42,0.15);
+    margin-top: 2rem; width: 320px;
+  }
+  .hero-stat {
+    background: rgba(13,31,60,0.8);
+    padding: 1rem 0.75rem;
+    text-align: center;
+  }
+  .hero-stat-num {
+    font-family: var(--serif);
+    font-size: 1.75rem;
+    color: var(--gold-light);
+    line-height: 1;
+    display: block;
+  }
+  .hero-stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    display: block;
+    margin-top: 0.25rem;
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 6rem 5vw; }
+  .section-label {
+    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); font-weight: 400; margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
+  h2.section-title {
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    color: var(--navy);
+    margin-bottom: 1rem;
+  }
+  .section-sub {
+    font-size: 1rem; color: var(--muted); max-width: 560px; line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--off); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1.6fr; gap: 5rem; align-items: start;
+    max-width: 1100px;
+  }
+  .about-left {}
+  .about-quote {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--navy);
+    line-height: 1.5;
+    border-left: 3px solid var(--gold);
+    padding-left: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .about-body { color: var(--muted); line-height: 1.9; font-size: 0.97rem; margin-bottom: 1.5rem; }
+  .about-right {}
+  .about-pillars { display: flex; flex-direction: column; gap: 1.25rem; }
+  .pillar {
+    display: grid; grid-template-columns: 48px 1fr; gap: 1rem; align-items: start;
+    padding: 1.25rem; background: var(--white);
+    border: 1px solid var(--mid); border-left: 3px solid var(--gold);
+  }
+  .pillar-icon {
+    width: 48px; height: 48px;
+    background: rgba(200,146,42,0.1);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    color: var(--gold);
+  }
+  .pillar-title { font-weight: 500; color: var(--navy); font-size: 0.95rem; margin-bottom: 0.25rem; }
+  .pillar-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
+
+  /* ── SERVICES ── */
+  #services { background: var(--white); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5px;
+    background: var(--mid);
+    border: 1.5px solid var(--mid);
+    max-width: 1200px;
+  }
+  .service-card {
+    background: var(--white);
+    padding: 2.5rem 2rem;
+    position: relative;
+    transition: background 0.25s;
+    cursor: default;
+  }
+  .service-card:hover { background: var(--off); }
+  .service-card:hover .service-num { color: var(--gold); }
+  .service-num {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--mid);
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+    display: block;
+    transition: color 0.25s;
+  }
+  .service-icon { font-size: 1.75rem; margin-bottom: 1rem; display: block; }
+  .service-title { font-family: var(--serif); font-size: 1.35rem; color: var(--navy); margin-bottom: 0.75rem; }
+  .service-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.75; margin-bottom: 1.25rem; }
+  .service-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .stag {
+    font-size: 0.68rem; letter-spacing: 0.05em;
+    background: var(--off); color: var(--navy);
+    padding: 0.2rem 0.6rem; border-radius: 2px;
+    border: 1px solid var(--mid);
+    font-weight: 500;
+  }
+  .service-card.featured { background: var(--navy); }
+  .service-card.featured:hover { background: var(--navy-2); }
+  .service-card.featured .service-num { color: rgba(200,146,42,0.4); }
+  .service-card.featured .service-title { color: var(--white); }
+  .service-card.featured .service-desc { color: rgba(255,255,255,0.6); }
+  .service-card.featured .stag { background: rgba(200,146,42,0.12); color: var(--gold-light); border-color: rgba(200,146,42,0.25); }
+  .service-card.featured:hover .service-num { color: var(--gold); }
+
+  /* ── TOOLS ── */
+  #tools { background: var(--navy); padding: 5rem 5vw; }
+  #tools .section-label { color: var(--gold); }
+  #tools .section-label::before { background: var(--gold); }
+  #tools h2.section-title { color: var(--white); }
+  #tools .section-sub { color: rgba(255,255,255,0.5); }
+  .tools-categories { display: flex; flex-direction: column; gap: 2.5rem; max-width: 1100px; }
+  .tool-group {}
+  .tool-group-label {
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold-dim); margin-bottom: 1rem; padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(200,146,42,0.2);
+  }
+  .tool-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tool-chip {
+    font-size: 0.8rem; font-weight: 400;
+    color: rgba(255,255,255,0.75);
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04);
+    padding: 0.4rem 0.9rem; border-radius: 2px;
+    transition: border-color 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  .tool-chip:hover { border-color: rgba(200,146,42,0.5); color: var(--gold-light); }
+  .tool-chip.primary {
+    border-color: rgba(200,146,42,0.45);
+    color: var(--gold-light);
+    background: rgba(200,146,42,0.08);
+  }
+
+  /* ── CERTIFICATIONS ── */
+  #certs { background: var(--off); }
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem; max-width: 1100px;
+  }
+  .cert-card {
+    background: var(--white);
+    border: 1px solid var(--mid);
+    border-top: 3px solid var(--gold);
+    padding: 1.75rem 1.5rem;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .cert-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(13,31,60,0.08); }
+  .cert-badge { font-size: 2rem; display: block; margin-bottom: 0.75rem; }
+  .cert-title { font-family: var(--serif); font-size: 1.1rem; color: var(--navy); margin-bottom: 0.25rem; line-height: 1.3; }
+  .cert-org { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); }
+
+  /* ── CLIENTS ── */
+  #clients { background: var(--white); }
+  .clients-intro {
+    display: grid; grid-template-columns: 1fr 1.8fr; gap: 4rem;
+    align-items: start; max-width: 1100px; margin-bottom: 3.5rem;
+  }
+  .clients-table { width: 100%; max-width: 1100px; border-collapse: collapse; }
+  .clients-table thead tr {
+    background: var(--navy);
+  }
+  .clients-table th {
+    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    font-weight: 400; color: rgba(255,255,255,0.6);
+    padding: 0.85rem 1.25rem; text-align: left;
+  }
+  .clients-table tbody tr {
+    border-bottom: 1px solid var(--mid);
+    transition: background 0.15s;
+  }
+  .clients-table tbody tr:hover { background: var(--off); }
+  .clients-table td {
+    padding: 0.85rem 1.25rem; font-size: 0.88rem; color: var(--body);
+    vertical-align: middle;
+  }
+  .clients-table td:first-child { font-weight: 500; color: var(--navy); }
+  .clients-table td:nth-child(2) { color: var(--muted); font-size: 0.82rem; white-space: nowrap; }
+  .focus-badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    background: var(--off); color: var(--navy);
+    padding: 0.2rem 0.65rem; border-radius: 2px;
+    border: 1px solid var(--mid); font-weight: 400;
+  }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--navy); }
+  #contact .section-label { color: var(--gold); }
+  #contact .section-label::before { background: var(--gold); }
+  #contact h2.section-title { color: var(--white); }
+  #contact .section-sub { color: rgba(255,255,255,0.55); }
+  .contact-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; max-width: 1000px; align-items: start; }
+  .contact-methods { display: flex; flex-direction: column; gap: 1.25rem; }
+  .contact-method {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1.25rem; border: 1px solid rgba(200,146,42,0.2);
+    background: rgba(255,255,255,0.03);
+    transition: border-color 0.2s;
+  }
+  .contact-method:hover { border-color: rgba(200,146,42,0.5); }
+  .contact-method-icon {
+    width: 44px; height: 44px; background: rgba(200,146,42,0.12);
+    border: 1px solid rgba(200,146,42,0.25);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; color: var(--gold); flex-shrink: 0;
+  }
+  .contact-method-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 0.2rem; }
+  .contact-method-value { font-size: 0.9rem; color: var(--white); }
+  .contact-form-panel { }
+  .form-group { margin-bottom: 1.25rem; }
+  .form-group label { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.45); display: block; margin-bottom: 0.5rem; }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(200,146,42,0.2);
+    color: var(--white);
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    border-radius: 2px;
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus { border-color: var(--gold); }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(255,255,255,0.25); }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-group select option { background: var(--navy-2); }
+  .form-submit {
+    width: 100%;
+    background: var(--gold);
+    color: var(--navy);
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: none; cursor: pointer;
+    padding: 0.9rem 2rem;
+    border-radius: 2px;
+    transition: background 0.2s;
+  }
+  .form-submit:hover { background: var(--gold-light); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #080F1A;
+    padding: 2rem 5vw;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+    border-top: 1px solid rgba(200,146,42,0.15);
+  }
+  .footer-name { font-family: var(--serif); color: rgba(255,255,255,0.5); font-size: 1rem; }
+  .footer-name span { color: var(--gold); }
+  .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.3); }
+
+  /* ── Animations ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp 0.7s ease both; }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.22s; }
+  .delay-3 { animation-delay: 0.36s; }
+  .delay-4 { animation-delay: 0.5s; }
+  .delay-5 { animation-delay: 0.65s; }
+
+  [data-reveal] { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  [data-reveal].revealed { opacity: 1; transform: none; }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    #hero { grid-template-columns: 1fr; padding-top: 100px; padding-bottom: 4rem; text-align: center; }
+    .hero-right { display: none; }
+    .hero-btns { justify-content: center; }
+    .hero-tags { justify-content: center; }
+    .about-grid, .contact-grid, .clients-intro { grid-template-columns: 1fr; gap: 2.5rem; }
+    .clients-table td:nth-child(2) { display: none; }
+    nav .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────────────────────────────── -->
+<nav>
+  <a href="#hero" class="nav-logo">Darrel <span>Deinla</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#certs">Certifications</a></li>
+    <li><a href="#clients">Clients</a></li>
+    <li><a href="#contact" class="nav-cta">Let's Talk</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-bg"></div>
+
+  <div class="hero-left">
+    <div class="hero-eyebrow fade-up">CRM &amp; RevOps Consultant</div>
+    <h1 class="hero-name fade-up delay-1">
+      Darrel
+      <em>Deinla</em>
+    </h1>
+    <p class="hero-title fade-up delay-2">HubSpot · GoHighLevel · n8n · Zapier · Make</p>
+    <p class="hero-desc fade-up delay-3">
+      I architect CRM ecosystems, automate revenue workflows, and build the operational infrastructure businesses need to scale — from pipeline design and data governance to AI-powered outreach automation.
+    </p>
+    <div class="hero-tags fade-up delay-4">
+      <span class="hero-tag">HubSpot Certified</span>
+      <span class="hero-tag">GHL Specialist</span>
+      <span class="hero-tag">n8n Automation</span>
+      <span class="hero-tag">RevOps</span>
+      <span class="hero-tag">AI Workflows</span>
+    </div>
+    <div class="hero-btns fade-up delay-5">
+      <a href="#contact" class="btn-primary">Start a Project</a>
+      <a href="#services" class="btn-ghost">View Services</a>
+    </div>
+  </div>
+
+  <div class="hero-right fade-up delay-2">
+    <div class="hero-photo-frame">
+      <div class="hero-photo-inner">
+        <div class="hero-photo-placeholder">
+          <div class="photo-icon">👤</div>
+          <span class="photo-label">Insert Your Photo</span>
+          <span class="photo-sub">Replace src with your image URL</span>
+        </div>
+        <!-- TO USE YOUR PHOTO: replace the div above with:
+        <img src="YOUR_PHOTO_URL" alt="Darrel Deinla"> -->
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-num">5+</span>
+        <span class="hero-stat-label">Years</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">14+</span>
+        <span class="hero-stat-label">Clients</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">6</span>
+        <span class="hero-stat-label">HubSpot Certs</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ─────────────────────────────────────────────────────────────────── -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-left" data-reveal>
+      <div class="section-label">About Me</div>
+      <h2 class="section-title">More than a CRM admin. A systems thinker.</h2>
+      <blockquote class="about-quote">
+        "I don't just configure HubSpot — I design the engine your sales and marketing teams run on."
+      </blockquote>
+      <p class="about-body">
+        Based in Metro Manila, I've spent the last 5+ years helping businesses across SaaS, healthcare, real estate, energy, and professional services build CRM infrastructure that actually works. From HubSpot and GoHighLevel buildouts to multi-platform automation with n8n, Zapier, and Make — I bridge the gap between your business process and your tech stack.
+      </p>
+      <p class="about-body">
+        I hold 6 HubSpot certifications and have delivered 14+ project-based engagements alongside a 4-year tenure as a full-time HubSpot Administrator. My work spans CRM architecture, RevOps strategy, AI-powered outreach workflows, and client-facing consulting.
+      </p>
+      <a href="#contact" class="btn-primary" style="margin-top:1rem; display: inline-block;">Work With Me →</a>
+    </div>
+    <div class="about-right" data-reveal>
+      <div class="about-pillars">
+        <div class="pillar">
+          <div class="pillar-icon">🏗</div>
+          <div>
+            <div class="pillar-title">CRM Architecture</div>
+            <p class="pillar-desc">I design full CRM ecosystems — properties, pipelines, lifecycle stages, governance policies, and integrations aligned to your GTM motion.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">⚙️</div>
+          <div>
+            <div class="pillar-title">Automation Engineering</div>
+            <p class="pillar-desc">From n8n AI pipelines to Zapier multi-step Zaps and Make scenarios — I build automations that eliminate manual work and scale with you.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">📊</div>
+          <div>
+            <div class="pillar-title">Revenue Operations</div>
+            <p class="pillar-desc">I turn messy CRM data into executive-ready dashboards — pipeline health, attribution, sales activity, and funnel performance at a glance.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🤝</div>
+          <div>
+            <div class="pillar-title">Consultant Delivery</div>
+            <p class="pillar-desc">Proposals, SOPs, walkthroughs, and ongoing support — I work like a trusted partner, not a one-time vendor.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ───────────────────────────────────────────────────────────────── -->
+<section id="services">
+  <div class="section-label" data-reveal>What I Do</div>
+  <h2 class="section-title" data-reveal>Services</h2>
+  <p class="section-sub" data-reveal>End-to-end delivery — from strategy and setup through automation, reporting, and ongoing optimization.</p>
+
+  <div class="services-grid" data-reveal>
+
+    <div class="service-card featured">
+      <span class="service-num">01</span>
+      <span class="service-icon">🟠</span>
+      <h3 class="service-title">HubSpot CRM Setup &amp; Administration</h3>
+      <p class="service-desc">Full portal configuration, onboarding, and administration. Custom properties, pipelines, lifecycle stages, deal automation, lead scoring, sequences, and governance.</p>
+      <div class="service-tags">
+        <span class="stag">Portal Setup</span>
+        <span class="stag">Pipelines</span>
+        <span class="stag">Automation</span>
+        <span class="stag">Reporting</span>
+        <span class="stag">Onboarding</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <span class="service-num">02</span>
+      <span class="service-icon">🔵</span>
+      <h3 class="service-title">GoHighLevel (GHL) Buildouts</h3>
+      <p class="service-desc">Sub-account setup, white-labeling, snapshot deployment, funnels, SMS/email/WhatsApp campaigns, smart lists, booking calendars, and reputation automation.</p>
+      <div class="service-tags">
+        <span class="stag">Sub-accounts</span>
+        <span class="stag">Snapshots</span>
+        <span class="stag">SMS & Email</span>
+        <span class="stag">Funnels</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <span class="service-num">03</span>
+      <span class="service-icon">⚡</span>
+      <h3 class="service-title">Process Automation (n8n · Zapier · Make)</h3>
+      <p class="service-desc">Multi-platform workflow automation connecting your CRM to billing, communication, e-commerce, and AI tools. Custom API integrations, webhooks, and error handling.</p>
+      <div class="service-tags">
+        <span class="stag">n8n</span>
+        <span class="stag">Zapier</span>
+        <span class="stag">Make</span>
+        <span class="stag">API & Webhooks</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <span class="service-num">04</span>
+      <span class="service-icon">🤖</span>
+      <h3 class="service-title">AI-Powered Outreach Workflows</h3>
+      <p class="service-desc">RAG-based email content pipelines, OpenAI API integrations, SerpAPI lead enrichment, Supabase vector stores, and AI sales call analysis — automating your outreach at scale.</p>
+      <div class="service-tags">
+        <span class="stag">OpenAI API</span>
+        <span class="stag">RAG Pipelines</span>
+        <span class="stag">SerpAPI</span>
+        <span class="stag">Supabase</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <span class="service-num">05</span>
+      <span class="service-icon">📊</span>
+      <h3 class="service-title">RevOps Dashboards &amp; Reporting</h3>
+      <p class="service-desc">Custom HubSpot dashboards for sales, marketing, revenue attribution, funnel analysis, and KPIs. Turning CRM data into actionable insights for leadership teams.</p>
+      <div class="service-tags">
+        <span class="stag">Sales Reports</span>
+        <span class="stag">Attribution</span>
+        <span class="stag">KPI Dashboards</span>
+        <span class="stag">Funnel Analytics</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <span class="service-num">06</span>
+      <span class="service-icon">🧹</span>
+      <h3 class="service-title">CRM Audit, Migration &amp; Data Hygiene</h3>
+      <p class="service-desc">CRM audits, needs analysis, migration planning, data mapping, deduplication, field normalization, import management, and governance policy setup.</p>
+      <div class="service-tags">
+        <span class="stag">Audit</span>
+        <span class="stag">Migration</span>
+        <span class="stag">Deduplication</span>
+        <span class="stag">Governance</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <span class="service-num">07</span>
+      <span class="service-icon">🎯</span>
+      <h3 class="service-title">Sales &amp; SDR Process Design</h3>
+      <p class="service-desc">Cold outreach sequence planning, ICP definition, lead qualification processes, prospect list segmentation, and Reply.io/GHL transition strategy.</p>
+      <div class="service-tags">
+        <span class="stag">Cold Outreach</span>
+        <span class="stag">ICP</span>
+        <span class="stag">SDR Design</span>
+        <span class="stag">Sequences</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <span class="service-num">08</span>
+      <span class="service-icon">📋</span>
+      <h3 class="service-title">Training, SOPs &amp; Documentation</h3>
+      <p class="service-desc">HubSpot and GHL user training, workflow documentation, SOP writing, QA checklists, client walkthroughs, and process instruction creation.</p>
+      <div class="service-tags">
+        <span class="stag">Training</span>
+        <span class="stag">SOPs</span>
+        <span class="stag">Documentation</span>
+        <span class="stag">QA Checklists</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── TOOLS ──────────────────────────────────────────────────────────────────── -->
+<section id="tools">
+  <div class="section-label" data-reveal>Tech Stack</div>
+  <h2 class="section-title" data-reveal>Tools &amp; Integrations</h2>
+  <p class="section-sub" data-reveal>40+ platforms I work with daily — from core CRMs and automation engines to data, outreach, and productivity tools.</p>
+
+  <div class="tools-categories" data-reveal>
+    <div class="tool-group">
+      <div class="tool-group-label">CRM Platforms</div>
+      <div class="tool-chips">
+        <span class="tool-chip primary">HubSpot</span>
+        <span class="tool-chip primary">GoHighLevel (GHL)</span>
+        <span class="tool-chip">ActiveCampaign</span>
+        <span class="tool-chip">Keap</span>
+        <span class="tool-chip">Mailchimp</span>
+        <span class="tool-chip">Klaviyo</span>
+      </div>
+    </div>
+    <div class="tool-group">
+      <div class="tool-group-label">Automation & AI</div>
+      <div class="tool-chips">
+        <span class="tool-chip primary">n8n</span>
+        <span class="tool-chip primary">Zapier</span>
+        <span class="tool-chip primary">Make / Integromat</span>
+        <span class="tool-chip">OpenAI API</span>
+        <span class="tool-chip">Supabase</span>
+        <span class="tool-chip">SerpAPI</span>
+        <span class="tool-chip">Postgres</span>
+        <span class="tool-chip">Google Drive AI</span>
+      </div>
+    </div>
+    <div class="tool-group">
+      <div class="tool-group-label">Outreach & Sales</div>
+      <div class="tool-chips">
+        <span class="tool-chip">Reply.io</span>
+        <span class="tool-chip">Apollo.io</span>
+        <span class="tool-chip">Clay</span>
+        <span class="tool-chip">Skylead</span>
+        <span class="tool-chip">Instantly</span>
+        <span class="tool-chip">RocketReach</span>
+        <span class="tool-chip">ZeroBounce</span>
+        <span class="tool-chip">ManyChat</span>
+        <span class="tool-chip">Fanbasis</span>
+        <span class="tool-chip">Whop</span>
+      </div>
+    </div>
+    <div class="tool-group">
+      <div class="tool-group-label">Communication & Calling</div>
+      <div class="tool-chips">
+        <span class="tool-chip">Aircall</span>
+        <span class="tool-chip">RingCentral</span>
+        <span class="tool-chip">Twilio</span>
+        <span class="tool-chip">Slack</span>
+        <span class="tool-chip">Microsoft Teams</span>
+        <span class="tool-chip">Typeform</span>
+        <span class="tool-chip">OnceHub</span>
+      </div>
+    </div>
+    <div class="tool-group">
+      <div class="tool-group-label">Data & Research</div>
+      <div class="tool-chips">
+        <span class="tool-chip">SmartList</span>
+        <span class="tool-chip">Google Workspace</span>
+        <span class="tool-chip">QuickBooks</span>
+        <span class="tool-chip">Authorize.net</span>
+        <span class="tool-chip">Shopify</span>
+        <span class="tool-chip">Stripe</span>
+      </div>
+    </div>
+    <div class="tool-group">
+      <div class="tool-group-label">Project & Productivity</div>
+      <div class="tool-chips">
+        <span class="tool-chip">Notion</span>
+        <span class="tool-chip">ClickUp</span>
+        <span class="tool-chip">Asana</span>
+        <span class="tool-chip">Canva AI</span>
+        <span class="tool-chip">Gamma AI</span>
+        <span class="tool-chip">Veo</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CERTIFICATIONS ─────────────────────────────────────────────────────────── -->
+<section id="certs">
+  <div class="section-label" data-reveal>Verified Expertise</div>
+  <h2 class="section-title" data-reveal>HubSpot Certifications</h2>
+  <p class="section-sub" data-reveal>6 active HubSpot certifications covering the full product suite — from onboarding and inbound strategy to advanced hub-level configuration.</p>
+  <div class="certs-grid" data-reveal>
+    <div class="cert-card"><span class="cert-badge">🏅</span><div class="cert-title">HubSpot Onboarding</div><div class="cert-org">HubSpot Academy</div></div>
+    <div class="cert-card"><span class="cert-badge">📣</span><div class="cert-title">Marketing Hub</div><div class="cert-org">HubSpot Academy</div></div>
+    <div class="cert-card"><span class="cert-badge">💼</span><div class="cert-title">Sales Hub</div><div class="cert-org">HubSpot Academy</div></div>
+    <div class="cert-card"><span class="cert-badge">⚙️</span><div class="cert-title">Operations Hub</div><div class="cert-org">HubSpot Academy</div></div>
+    <div class="cert-card"><span class="cert-badge">📧</span><div class="cert-title">Email Marketing</div><div class="cert-org">HubSpot Academy</div></div>
+    <div class="cert-card"><span class="cert-badge">🎯</span><div class="cert-title">Inbound</div><div class="cert-org">HubSpot Academy</div></div>
+  </div>
+</section>
+
+<!-- ── CLIENTS ────────────────────────────────────────────────────────────────── -->
+<section id="clients">
+  <div class="section-label" data-reveal>Track Record</div>
+  <h2 class="section-title" data-reveal>Client Engagements</h2>
+  <p class="section-sub" data-reveal>14+ project-based clients across SaaS, healthcare, real estate, energy, recruitment, and digital marketing — plus a 4-year in-house tenure.</p>
+
+  <table class="clients-table" data-reveal>
+    <thead>
+      <tr>
+        <th>Client</th>
+        <th>Period</th>
+        <th>Focus Area</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Growth Zone</td><td>Jan 2025 – Dec 2025</td><td><span class="focus-badge">HubSpot + GHL + Zapier</span></td></tr>
+      <tr><td>iSprye</td><td>Mar 2025 – Oct 2025</td><td><span class="focus-badge">CRM & n8n AI Workflows</span></td></tr>
+      <tr><td>Elite Smart Energy Solutions</td><td>May – Sep 2025</td><td><span class="focus-badge">Lead Mgmt & Automation</span></td></tr>
+      <tr><td>Risedigital</td><td>Feb – Jul 2025</td><td><span class="focus-badge">HubSpot Marketing Automation</span></td></tr>
+      <tr><td>Corportrade</td><td>Aug 2024 – Jul 2025</td><td><span class="focus-badge">CRM Migration & Make</span></td></tr>
+      <tr><td>Fulcrum</td><td>Sep – Dec 2024</td><td><span class="focus-badge">HubSpot Config & RevOps</span></td></tr>
+      <tr><td>Mivarii</td><td>Jun – Aug 2024</td><td><span class="focus-badge">GHL Sub-account & Funnels</span></td></tr>
+      <tr><td>Intogreat Solutions</td><td>Mar – Jul 2024</td><td><span class="focus-badge">HubSpot Admin & Data</span></td></tr>
+      <tr><td>McLemore</td><td>Jun – Dec 2022</td><td><span class="focus-badge">HubSpot Onboarding</span></td></tr>
+      <tr><td>Donald Consulting Group</td><td>Feb – Aug 2022</td><td><span class="focus-badge">CRM Strategy & SDR</span></td></tr>
+      <tr><td>Scout Realtor Group</td><td>Mar – Oct 2021</td><td><span class="focus-badge">Real Estate CRM + ManyChat</span></td></tr>
+      <tr><td>Rodriguez Law Group</td><td>Jan – Jul 2021</td><td><span class="focus-badge">HubSpot Setup</span></td></tr>
+      <tr><td>Golftrek</td><td>Dec 2020 – May 2021</td><td><span class="focus-badge">HubSpot & Lead Tracking</span></td></tr>
+      <tr><td style="color:#C8922A; font-style:italic;">Clearbox Strategies</td><td>Feb 2020 – Jan 2024</td><td><span class="focus-badge" style="border-color:#C8922A; color:#C8922A;">4-Year Tenure · HubSpot Admin</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ── CONTACT ────────────────────────────────────────────────────────────────── -->
+<section id="contact">
+  <div class="contact-grid">
+    <div>
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">Let's build something together.</h2>
+      <p class="section-sub">Whether you need a CRM setup, automation audit, or a full RevOps overhaul — I'd love to hear about your project.</p>
+      <div class="contact-methods">
+        <div class="contact-method">
+          <div class="contact-method-icon">✉</div>
+          <div>
+            <div class="contact-method-label">Email</div>
+            <div class="contact-method-value">darrel.deinla@gmail.com</div>
+          </div>
+        </div>
+        <div class="contact-method">
+          <div class="contact-method-icon">📞</div>
+          <div>
+            <div class="contact-method-label">Phone / WhatsApp</div>
+            <div class="contact-method-value">+63 916 916 7186</div>
+          </div>
+        </div>
+        <div class="contact-method">
+          <div class="contact-method-icon">📍</div>
+          <div>
+            <div class="contact-method-label">Location</div>
+            <div class="contact-method-value">Metro Manila, Philippines</div>
+          </div>
+        </div>
+        <div class="contact-method">
+          <div class="contact-method-icon">💼</div>
+          <div>
+            <div class="contact-method-label">Upwork / Freelance</div>
+            <div class="contact-method-value">Available for project-based work</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form-panel">
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" placeholder="Jane Smith">
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="jane@company.com">
+      </div>
+      <div class="form-group">
+        <label>Service Needed</label>
+        <select>
+          <option value="">Select a service…</option>
+          <option>HubSpot CRM Setup / Administration</option>
+          <option>GoHighLevel (GHL) Buildout</option>
+          <option>n8n / Zapier / Make Automation</option>
+          <option>AI-Powered Outreach Workflows</option>
+          <option>RevOps Dashboards & Reporting</option>
+          <option>CRM Audit / Migration / Cleanup</option>
+          <option>Sales & SDR Process Design</option>
+          <option>Training & Documentation</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Tell me about your project</label>
+        <textarea placeholder="Briefly describe what you're working on and what outcome you're looking for…"></textarea>
+      </div>
+      <button class="form-submit" onclick="handleSubmit(this)">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-name">Darrel <span>Deinla</span></div>
+  <div class="footer-copy">© 2026 Darrel Deinla · CRM & RevOps Specialist · Metro Manila, Philippines</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('[data-reveal]');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('revealed'), i * 60);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => io.observe(el));
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.boxShadow =
+      window.scrollY > 40 ? '0 2px 24px rgba(0,0,0,0.3)' : 'none';
+  });
+
+  // Form submit mock
+  function handleSubmit(btn) {
+    btn.textContent = 'Message Sent ✓';
+    btn.style.background = '#2D6A4F';
+    btn.style.color = '#fff';
+    btn.disabled = true;
+  }
+</script>
+</body>
+</html>
